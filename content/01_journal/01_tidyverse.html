@@ -5,7 +5,7 @@
 <meta name="generator" content="quarto-1.2.335">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Joschka Schwarz">
-<title>MyLabJournal - Tidyverse</title>
+<title>MyLabJournal – tidyverse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -188,81 +188,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Contents</h2>
    
   <ul class="collapse">
-<li><a href="#text-formatting" id="toc-text-formatting" class="nav-link active" data-scroll-target="#text-formatting"><span class="toc-section-number">1</span>  Text Formatting</a></li>
-  <li>
-<a href="#headings" id="toc-headings" class="nav-link" data-scroll-target="#headings"><span class="toc-section-number">2</span>  Headings</a>
-  <ul class="collapse">
-<li><a href="#header-2" id="toc-header-2" class="nav-link" data-scroll-target="#header-2"><span class="toc-section-number">2.1</span>  Header 2</a></li>
-  </ul>
-</li>
-  <li><a href="#links-images" id="toc-links-images" class="nav-link" data-scroll-target="#links-images"><span class="toc-section-number">3</span>  Links &amp; Images</a></li>
-  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="toc-section-number">4</span>  Lists</a></li>
-  <li><a href="#tables" id="toc-tables" class="nav-link" data-scroll-target="#tables"><span class="toc-section-number">5</span>  Tables</a></li>
-  <li><a href="#source-code" id="toc-source-code" class="nav-link" data-scroll-target="#source-code"><span class="toc-section-number">6</span>  Source Code</a></li>
+<li><a href="#data-science-at-tuhh" id="toc-data-science-at-tuhh" class="nav-link active" data-scroll-target="#data-science-at-tuhh"><span class="toc-section-number">1</span>  Data Science at TUHH ——————————————————</a></li>
+  <li><a href="#sales-analysis--" id="toc-sales-analysis--" class="nav-link" data-scroll-target="#sales-analysis--"><span class="toc-section-number">2</span>  SALES ANALYSIS —-</a></li>
+  <li><a href="#load-libraries--" id="toc-load-libraries--" class="nav-link" data-scroll-target="#load-libraries--"><span class="toc-section-number">3</span>  1.0 Load libraries —-</a></li>
+  <li><a href="#importing-files--" id="toc-importing-files--" class="nav-link" data-scroll-target="#importing-files--"><span class="toc-section-number">4</span>  2.0 Importing Files —-</a></li>
+  <li><a href="#examining-data--" id="toc-examining-data--" class="nav-link" data-scroll-target="#examining-data--"><span class="toc-section-number">5</span>  3.0 Examining Data —-</a></li>
+  <li><a href="#all-actions-are-chained-with-the-pipe-already.-you-can-perform-each-step-separately-and-use-glimpse-or-view-to-validate-your-code.-store-the-result-in-a-variable-at-the-end-of-the-steps." id="toc-all-actions-are-chained-with-the-pipe-already.-you-can-perform-each-step-separately-and-use-glimpse-or-view-to-validate-your-code.-store-the-result-in-a-variable-at-the-end-of-the-steps." class="nav-link" data-scroll-target="#all-actions-are-chained-with-the-pipe-already.-you-can-perform-each-step-separately-and-use-glimpse-or-view-to-validate-your-code.-store-the-result-in-a-variable-at-the-end-of-the-steps."><span class="toc-section-number">6</span>  All actions are chained with the pipe already. You can perform each step separately and use glimpse() or View() to validate your code. Store the result in a variable at the end of the steps.</a></li>
+  <li><a href="#step-1---manipulate" id="toc-step-1---manipulate" class="nav-link" data-scroll-target="#step-1---manipulate"><span class="toc-section-number">7</span>  Step 1 - Manipulate</a></li>
+  <li><a href="#step-2---visualize" id="toc-step-2---visualize" class="nav-link" data-scroll-target="#step-2---visualize"><span class="toc-section-number">8</span>  Step 2 - Visualize</a></li>
+  <li><a href="#sales-by-year-and-category-2--" id="toc-sales-by-year-and-category-2--" class="nav-link" data-scroll-target="#sales-by-year-and-category-2--"><span class="toc-section-number">9</span>  6.2 Sales by Year and Category 2 —-</a></li>
+  <li><a href="#step-2---visualize-1" id="toc-step-2---visualize-1" class="nav-link" data-scroll-target="#step-2---visualize-1"><span class="toc-section-number">10</span>  Step 2 - Visualize</a></li>
+  <li><a href="#writing-files--" id="toc-writing-files--" class="nav-link" data-scroll-target="#writing-files--"><span class="toc-section-number">11</span>  7.0 Writing Files —-</a></li>
+  <li><a href="#excel--" id="toc-excel--" class="nav-link" data-scroll-target="#excel--"><span class="toc-section-number">12</span>  7.1 Excel —-</a></li>
+  <li><a href="#csv--" id="toc-csv--" class="nav-link" data-scroll-target="#csv--"><span class="toc-section-number">13</span>  7.2 CSV —-</a></li>
+  <li><a href="#rds--" id="toc-rds--" class="nav-link" data-scroll-target="#rds--"><span class="toc-section-number">14</span>  7.3 RDS —-</a></li>
+  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="toc-section-number">15</span>  Lists</a></li>
+  <li><a href="#tables" id="toc-tables" class="nav-link" data-scroll-target="#tables"><span class="toc-section-number">16</span>  Tables</a></li>
+  <li><a href="#source-code" id="toc-source-code" class="nav-link" data-scroll-target="#source-code"><span class="toc-section-number">17</span>  Source Code</a></li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">Tidyverse</h1>
-</div>
-
-
-
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Joschka Schwarz </p>
-          </div>
-  </div>
-    
-  
-    
-  </div>
-  
-
-</header><div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You can delete everything in here and start fresh.</p>
-</div>
-</div>
-<p>This is a <code>.qmd</code> file. It is plain text with special features. Any time you write just like this, it will be compiled to normal text in the website. If you put a # in front of your text, it will create a top level-header.</p>
-<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
-<section id="text-formatting" class="level1" data-number="1"><h1 data-number="1">
-<span class="header-section-number">1</span> Text Formatting</h1>
-<p><em>italics</em> and <strong>bold</strong></p>
-<p>superscript<sup>2</sup> / subscript<sub>2</sub></p>
-<p><del>strikethrough</del></p>
-<p><code>verbatim code</code></p>
-<blockquote class="blockquote">
-<p>Blockquote</p>
-</blockquote>
-</section><section id="headings" class="level1" data-number="2"><h1 data-number="2">
-<span class="header-section-number">2</span> Headings</h1>
-<section id="header-2" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="header-2">
-<span class="header-section-number">2.1</span> Header 2</h2>
-<section id="header-3" class="level3"><h3 class="anchored" data-anchor-id="header-3">Header 3</h3>
-<section id="header-4" class="level4"><h4 class="anchored" data-anchor-id="header-4">Header 4</h4>
-<section id="header-5" class="level5"><h5 class="anchored" data-anchor-id="header-5">Header 5</h5>
-<section id="header-6" class="level6"><h6 class="anchored" data-anchor-id="header-6">Header 6</h6>
-</section></section></section></section></section></section><section id="links-images" class="level1" data-number="3"><h1 data-number="3">
-<span class="header-section-number">3</span> Links &amp; Images</h1>
-<p><a href="https://quarto.org" class="uri">https://quarto.org</a></p>
-<p><a href="https://quarto.org">Quarto</a></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="../../assets/img/elephant.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Caption"><img src="../../assets/img/elephant.png" class="img-fluid figure-img"></a></p>
-<p></p><figcaption class="figure-caption">Caption</figcaption><p></p>
-</figure>
-</div>
+<main class="content" id="quarto-document-content"><section id="data-science-at-tuhh" class="level1" data-number="1"><h1 data-number="1">
+<span class="header-section-number">1</span> Data Science at TUHH ——————————————————</h1>
+</section><section id="sales-analysis--" class="level1" data-number="2"><h1 data-number="2">
+<span class="header-section-number">2</span> SALES ANALYSIS —-</h1>
+</section><section id="load-libraries--" class="level1" data-number="3"><h1 data-number="3">
+<span class="header-section-number">3</span> 1.0 Load libraries —-</h1>
+<p>library(“tidyverse”) library(“readxl”)</p>
+</section><section id="importing-files--" class="level1" data-number="4"><h1 data-number="4">
+<span class="header-section-number">4</span> 2.0 Importing Files —-</h1>
+<p>bikes_tbl &lt;- read_excel(path =“ds_data/01_bike_sales/01_raw_data/bikes.xlsx”) orderlines_tbl &lt;- read_excel(“ds_data/01_bike_sales/01_raw_data/orderlines.xlsx”) bikeshops_tbl &lt;- read_excel(“ds_data/01_bike_sales/01_raw_data/bikeshops.xlsx”)</p>
+</section><section id="examining-data--" class="level1" data-number="5"><h1 data-number="5">
+<span class="header-section-number">5</span> 3.0 Examining Data —-</h1>
+<p>orderlines_tbl bikes_tbl glimpse(orderlines_tbl) # 4.0 Joining Data —- bike_orderlines_joined_tbl &lt;- orderlines_tbl %&gt;% left_join(bikes_tbl, by = c(“product.id” = “bike.id”)) %&gt;% left_join(bikeshops_tbl, by = c(“customer.id” = “bikeshop.id”)) bike_orderlines_joined_tbl %&gt;% glimpse() bike_orderlines_joined_tbl # 5.0 Wrangling Data —- bike_orderlines_joined_tbl$category bike_orderlines_joined_tbl %&gt;% select(category) %&gt;% filter(str_detect(category, “^Mountain”)) %&gt;% unique()</p>
+</section><section id="all-actions-are-chained-with-the-pipe-already.-you-can-perform-each-step-separately-and-use-glimpse-or-view-to-validate-your-code.-store-the-result-in-a-variable-at-the-end-of-the-steps." class="level1" data-number="6"><h1 data-number="6">
+<span class="header-section-number">6</span> All actions are chained with the pipe already. You can perform each step separately and use glimpse() or View() to validate your code. Store the result in a variable at the end of the steps.</h1>
+<p>bike_orderlines_joined_tbl bike_orderlines_wrangled_tbl &lt;- bike_orderlines_joined_tbl bike_orderlines_wrangled_tbl &lt;- bike_orderlines_wrangled_tbl %&gt;% separate(col = category, into = c(“category.1”, “category.2”, “category.3”), sep = ” - “) %&gt;%</p>
+<p>mutate(total.price = price * quantity) %&gt;% select(-…1, -gender) %&gt;% select(-ends_with(“.id”)) %&gt;% bind_cols(bike_orderlines_joined_tbl %&gt;% select(order.id)) %&gt;% select(order.id, contains(“order”), contains(“model”), contains(“category”), price, quantity, total.price, everything()) %&gt;% rename(bikeshop = name) %&gt;% set_names(names(.) %&gt;% str_replace_all(“\.”, “_“)) # 6.0 Business Insights —- # 6.1 Sales by Year —-</p>
+</section><section id="step-1---manipulate" class="level1" data-number="7"><h1 data-number="7">
+<span class="header-section-number">7</span> Step 1 - Manipulate</h1>
+<p>library(“lubridate”)</p>
+<p>sales_by_year_tbl &lt;- bike_orderlines_wrangled_tbl sales_by_year_tbl &lt;- sales_by_year_tbl %&gt;% select(order_id, order_date, quantity, price, total_price) %&gt;% mutate(order_year = year(order_date)) %&gt;% group_by(order_year) %&gt;% summarize(sales = sum(total_price))</p>
+</section><section id="step-2---visualize" class="level1" data-number="8"><h1 data-number="8">
+<span class="header-section-number">8</span> Step 2 - Visualize</h1>
+</section><section id="sales-by-year-and-category-2--" class="level1" data-number="9"><h1 data-number="9">
+<span class="header-section-number">9</span> 6.2 Sales by Year and Category 2 —-</h1>
+<p>sales_by_year_tbl %&gt;%</p>
+<p># Setup canvas with the columns year (x-axis) and sales (y-axis) ggplot(aes(x = order_year, y = sales)) +</p>
+<p># Geometries geom_col(fill = “#2DC6D6”) + # Use geom_col for a bar plot geom_label(aes(label = sales)) + # Adding labels to the bars geom_smooth(method = “lm”, se = FALSE) + # Adding a trendline</p>
+<p># Formatting # scale_y_continuous(labels = scales::dollar) + # Change the y-axis. # Again, we have to adjust it for euro values scale_y_continuous(labels = scales::dollar_format(big.mark = “.”, decimal.mark = “,”, prefix = ““, suffix =” €“)) + labs( title =”Revenue by year”, subtitle = “Upward Trend”, x = ““, # Override defaults for x and y y =”Revenue” ) # Step 1 - Manipulate library(“lubridate”)</p>
+<p>sales_by_year_category_tbl &lt;- bike_orderlines_wrangled_tbl sales_by_year_category_tbl &lt;- sales_by_year_category_tbl %&gt;% select(order_id, order_date, quantity, price, category_1, total_price) %&gt;% mutate(order_year = year(order_date)) %&gt;% group_by(order_year, category_1) %&gt;% summarise(sales = sum(total_price)) %&gt;% ungroup() %&gt;% mutate(sales_text = scales::dollar(sales, big.mark = “.”, decimal.mark = “,”, prefix = ““, suffix =” €“))</p>
+<p>sales_by_year_category_tbl</p>
+</section><section id="step-2---visualize-1" class="level1" data-number="10"><h1 data-number="10">
+<span class="header-section-number">10</span> Step 2 - Visualize</h1>
+<p>sales_by_year_category_tbl %&gt;%</p>
+<p># Setup canvas with the columns year (x-axis) and sales (y-axis) ggplot(aes(x = order_year, y = sales, fill = category_1)) +</p>
+<p># Geometries geom_col() + #geom_col(fill = “#2DC6D6”) + # Use geom_col for a bar plot #geom_label(aes(label = sales_text)) + # Adding labels to the bars geom_smooth(method = “lm”, se = FALSE) + # Adding a trendline</p>
+<p>#facets facet_wrap(~category_1)+ # Formatting # scale_y_continuous(labels = scales::dollar) + # Change the y-axis. # Again, we have to adjust it for euro values scale_y_continuous(labels = scales::dollar_format(big.mark = “.”, decimal.mark = “,”, prefix = ““, suffix =” €“)) + labs( title =”Revenue by year and main category”, subtitle = “Each product category has an upward trend”, fill = “Main category” #x = ““, # Override defaults for x and y #y =”Revenue” )</p>
+</section><section id="writing-files--" class="level1" data-number="11"><h1 data-number="11">
+<span class="header-section-number">11</span> 7.0 Writing Files —-</h1>
+</section><section id="excel--" class="level1" data-number="12"><h1 data-number="12">
+<span class="header-section-number">12</span> 7.1 Excel —-</h1>
+<p>install.packages(“writexl”) library(“writexl”) bike_orderlines_wrangled_tbl %&gt;% write_xlsx(“ds_data/01_bike_sales/02_wrangled_data/bike_orderlines.xlsx”)</p>
+</section><section id="csv--" class="level1" data-number="13"><h1 data-number="13">
+<span class="header-section-number">13</span> 7.2 CSV —-</h1>
+<p>bike_orderlines_wrangled_tbl %&gt;% write_csv(“ds_data/01_bike_sales/02_wrangled_data/bike_orderlines.csv”)</p>
+</section><section id="rds--" class="level1" data-number="14"><h1 data-number="14">
+<span class="header-section-number">14</span> 7.3 RDS —-</h1>
+<p>bike_orderlines_wrangled_tbl %&gt;% write_rds(“ds_data/01_bike_sales/02_wrangled_data/bike_orderlines.rds”)</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><a href="https://quarto.org"><img src="../../assets/img/elephant.png" class="img-fluid figure-img"></a></p>
 <p></p><figcaption class="figure-caption">Caption</figcaption><p></p>
@@ -273,8 +266,8 @@ Note
 <p></p><figcaption class="figure-caption">Caption</figcaption><p></p>
 </figure>
 </div>
-</section><section id="lists" class="level1" data-number="4"><h1 data-number="4">
-<span class="header-section-number">4</span> Lists</h1>
+</section><section id="lists" class="level1" data-number="15"><h1 data-number="15">
+<span class="header-section-number">15</span> Lists</h1>
 <ul>
 <li>
 <p>unordered list</p>
@@ -310,8 +303,8 @@ Note
 <p>continues after</p>
 <ol start="2" class="example" type="1">
 <li>an interruption</li>
-</ol></section><section id="tables" class="level1" data-number="5"><h1 data-number="5">
-<span class="header-section-number">5</span> Tables</h1>
+</ol></section><section id="tables" class="level1" data-number="16"><h1 data-number="16">
+<span class="header-section-number">16</span> Tables</h1>
 <table class="table">
 <thead><tr class="header">
 <th style="text-align: right;">Right</th>
@@ -339,8 +332,8 @@ Note
 <td style="text-align: center;">1</td>
 </tr>
 </tbody>
-</table></section><section id="source-code" class="level1" data-number="6"><h1 data-number="6">
-<span class="header-section-number">6</span> Source Code</h1>
+</table></section><section id="source-code" class="level1" data-number="17"><h1 data-number="17">
+<span class="header-section-number">17</span> Source Code</h1>
 <p>Use ``` to delimit blocks of source code:</p>
 <pre><code>code</code></pre>
 <p>Add a language to syntax highlight code blocks:</p>
@@ -365,7 +358,7 @@ Note
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">plot</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="01_tidyverse_files/figure-html/unnamed-chunk-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="01_tidyverse_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></a></p>
+<figure class="figure"><p><a href="01_tidyverse_files/figure-html/unnamed-chunk-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="01_tidyverse_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -621,7 +614,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","loop":true,"selector":".lightbox","descPosition":"bottom"});</script>
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","loop":true});</script>
 
 
 </body></html>
