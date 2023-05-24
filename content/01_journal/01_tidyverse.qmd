@@ -12,9 +12,12 @@ output:
     toc_depth: 2
     code_folding: hide
 ---
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
 ```
+## Challenge 1
 ```{r}
 # 1.0 Load libraries ----
 library(tidyverse)

@@ -5,3 +5,8 @@ author: "Deepshikha Deepshikha"
 ---
 
 ![](assets/logo/TIE_logo.svg){width=80% fig-align="center"}
+
+## Welcome to the Challenges of this course
+### Go to the journal and check each challenges and its solution.
+### Enjoy the Data and its various forms.
+
