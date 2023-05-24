@@ -1,8 +1,94 @@
 ---
-title: "Data Wrangling"
-author: "Joschka Schwarz"
+title: "03 Data Wrangling"
+author: "Deepshikha Deepshikha"
+date: "2022-04"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    df_print: paged
+    collapsed: false
+    number_sections: true
+    toc_depth: 2
+    code_folding: hide
 ---
 
-::: callout-note
-You can delete everything in here and start fresh.
-:::
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
+```
+
+
+
+## Alternative 2
+
+Last compiled: `r Sys.Date()`
+```{r}
+# Libraries
+
+library(tidyverse)
+library(vroom)
+library(data.table)
+library(lubridate)
+
+# Load the data
+
+patent_column_types <- list(
+  id         = col_character(),
+  date       = col_date("%Y-%m-%d"),
+  num_claims = col_double()
+)
+
+patent_dt <- vroom(
+  file      = "/Users/deepshikha/Documents/GitHub/ss23-bdsb-DeepshikhaDeepshika/patent.tsv",
+  delim     = "\t",
+  col_types = patent_column_types,
+  na        = c("", "NA", "NULL")
+)
+
+setDT(patent_dt)
+
+patent_assignee_column_types <- list(
+  patent_id   = col_character(),
+  assignee_id = col_character()
+)
+
+patent_assignee_dt <- vroom(
+  file      = "/Users/deepshikha/Documents/GitHub/ss23-bdsb-DeepshikhaDeepshika/patent_assignee.tsv",
+  delim     = "\t",
+  col_types = patent_assignee_column_types,
+  na        = c("", "NA", "NULL")
+)
+
+setDT(patent_assignee_dt)
+
+assignee_column_types <- list(
+  id           = col_character(),
+  type         = col_character(),
+  organization = col_character()
+)
+
+assignee_dt <- vroom(
+  file      = "/Users/deepshikha/Documents/GitHub/ss23-bdsb-DeepshikhaDeepshika/assignee.tsv",
+  delim     = "\t",
+  col_types = assignee_column_types,
+  na        = c("", "NA", "NULL")
+)
+
+setDT(assignee_dt)
+
+uspc_column_types <- list(
+  patent_id = col_character(),
+  mainclass_id = col_character(),
+  sequence = col_double()
+)
+
+uspc_dt <- vroom(
+  file      = "/Users/deepshikha/Documents/GitHub/ss23-bdsb-DeepshikhaDeepshika/uspc.tsv",
+  delim     = "\t",
+  col_types = uspc_column_types,
+  na        = c("", "NA", "NULL")
+)
+
+setDT(uspc_dt)
+
+```

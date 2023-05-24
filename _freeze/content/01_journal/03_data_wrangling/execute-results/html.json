@@ -1,0 +1,18 @@
+{
+  "hash": "442d3fffdcc4dec035e8f57dd6a64719",
+  "result": {
+    "markdown": "---\ntitle: \"03 Data Wrangling\"\nauthor: \"Deepshikha Deepshikha\"\ndate: \"2022-04\"\noutput:\n  html_document:\n    toc: true\n    toc_float: true\n    df_print: paged\n    collapsed: false\n    number_sections: true\n    toc_depth: 2\n    code_folding: hide\n---\n\n\n\n\n\n\n## Alternative 2\n\nLast compiled: 2023-05-24\n\n::: {.cell hash='03_data_wrangling_cache/html/unnamed-chunk-1_d9a699e474e9d86c17564366166b09ff'}\n\n```{.r .cell-code}\n# Libraries\n\nlibrary(tidyverse)\n```\n\n::: {.cell-output .cell-output-stderr}\n```\n#> ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n#> ✔ dplyr     1.1.2     ✔ readr     2.1.4\n#> ✔ forcats   1.0.0     ✔ stringr   1.5.0\n#> ✔ ggplot2   3.4.2     ✔ tibble    3.2.1\n#> ✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n#> ✔ purrr     1.0.1     \n#> ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n#> ✖ dplyr::filter() masks stats::filter()\n#> ✖ dplyr::lag()    masks stats::lag()\n#> ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors\n```\n:::\n\n```{.r .cell-code}\nlibrary(vroom)\nlibrary(data.table)\n```\n\n::: {.cell-output .cell-output-stderr}\n```\n#> \n#> Attaching package: 'data.table'\n#> \n#> The following objects are masked from 'package:lubridate':\n#> \n#>     hour, isoweek, mday, minute, month, quarter, second, wday, week,\n#>     yday, year\n#> \n#> The following objects are masked from 'package:dplyr':\n#> \n#>     between, first, last\n#> \n#> The following object is masked from 'package:purrr':\n#> \n#>     transpose\n```\n:::\n\n```{.r .cell-code}\nlibrary(lubridate)\n\n# Load the data\n\npatent_column_types <- list(\n  id         = col_character(),\n  date       = col_date(\"%Y-%m-%d\"),\n  num_claims = col_double()\n)\n\npatent_dt <- vroom(\n  file      = \"/Users/deepshikha/Documents/GitHub/ss23-bdsb-DeepshikhaDeepshika/patent.tsv\",\n  delim     = \"\\t\",\n  col_types = patent_column_types,\n  na        = c(\"\", \"NA\", \"NULL\")\n)\n\nsetDT(patent_dt)\n\npatent_assignee_column_types <- list(\n  patent_id   = col_character(),\n  assignee_id = col_character()\n)\n\npatent_assignee_dt <- vroom(\n  file      = \"/Users/deepshikha/Documents/GitHub/ss23-bdsb-DeepshikhaDeepshika/patent_assignee.tsv\",\n  delim     = \"\\t\",\n  col_types = patent_assignee_column_types,\n  na        = c(\"\", \"NA\", \"NULL\")\n)\n\nsetDT(patent_assignee_dt)\n\nassignee_column_types <- list(\n  id           = col_character(),\n  type         = col_character(),\n  organization = col_character()\n)\n\nassignee_dt <- vroom(\n  file      = \"/Users/deepshikha/Documents/GitHub/ss23-bdsb-DeepshikhaDeepshika/assignee.tsv\",\n  delim     = \"\\t\",\n  col_types = assignee_column_types,\n  na        = c(\"\", \"NA\", \"NULL\")\n)\n\nsetDT(assignee_dt)\n\nuspc_column_types <- list(\n  patent_id = col_character(),\n  mainclass_id = col_character(),\n  sequence = col_double()\n)\n\nuspc_dt <- vroom(\n  file      = \"/Users/deepshikha/Documents/GitHub/ss23-bdsb-DeepshikhaDeepshika/uspc.tsv\",\n  delim     = \"\\t\",\n  col_types = uspc_column_types,\n  na        = c(\"\", \"NA\", \"NULL\")\n)\n\nsetDT(uspc_dt)\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../../site_libs/pagedtable-1.1/css/pagedtable.css\" rel=\"stylesheet\" />\n<script src=\"../../site_libs/pagedtable-1.1/js/pagedtable.js\"></script>\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

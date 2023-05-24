@@ -1,8 +1,24 @@
 ---
 title: "Class Notes"
-author: "Joschka Schwarz"
+author: "Deepshikha Deepshikha"
 ---
 
-**IMPORTANT:** You can delete everything in here and start fresh. You might want to start by not deleting anything above this line until you know what that stuff is doing.
 
-This is an `.qmd` file. It is plain text with special features. Any time you write just like this, it will be compiled to normal text in the website. If you put a \# in front of your text, it will create a top level-header.
+In this project, you will learn how to:
+
+Use the R and RStudio interfaces
+Run R commands
+Create R objects
+Write your own R functions and scripts
+
+Many of the examples in this course are inspired by …
+
+R for Data Science by Hadley Wickham & Garrett Grolemund
+Hands-On Programming with R by Garret Grolemund
+
+DataCamp
+join the TUHH data science team on datacamp via the following link (Please register with your tuhh email address):
+
+Website
+
+https://www.datacamp.com/groups/shared_links/983ad9028575b0456ba34bc1a8e90f2611969528c2f655e5a4e8b01bda4b6da2
