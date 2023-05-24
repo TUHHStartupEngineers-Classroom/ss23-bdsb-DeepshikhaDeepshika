@@ -1,40 +1,41 @@
-# Data Science at TUHH ------------------------------------------------------
-# SALES ANALYSIS ----
-
+---
+title: "01 Intro to the tidyverse"
+author: "Deepshikha Deepshikha"
+date: "2023-05"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    df_print: paged
+    collapsed: false
+    number_sections: true
+    toc_depth: 2
+    code_folding: hide
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE,warning=FALSE, cache=TRUE)
+```
+```{r}
 # 1.0 Load libraries ----
-library("tidyverse")
-library("readxl")
-
+library(tidyverse)
+library(readxl)
 # 2.0 Importing Files ----
-bikes_tbl      <- read_excel(path ="ds_data/01_bike_sales/01_raw_data/bikes.xlsx")
-orderlines_tbl <- read_excel("ds_data/01_bike_sales/01_raw_data/orderlines.xlsx")
-bikeshops_tbl  <- read_excel("ds_data/01_bike_sales/01_raw_data/bikeshops.xlsx")
-
+bikes_tbl      <- read_excel(path = "/Users/deepshikha/Documents/GitHub/ss23-bdsb-DeepshikhaDeepshika/ds_data/01_bike_sales/01_raw_data/bikes.xlsx")
+orderlines_tbl <- read_excel("/Users/deepshikha/Documents/GitHub/ss23-bdsb-DeepshikhaDeepshika/ds_data/01_bike_sales/01_raw_data/orderlines.xlsx")
+bikeshops_tbl  <- read_excel("/Users/deepshikha/Documents/GitHub/ss23-bdsb-DeepshikhaDeepshika/ds_data/01_bike_sales/01_raw_data/bikeshops.xlsx")
 # 3.0 Examining Data ----
 orderlines_tbl
-bikes_tbl
 glimpse(orderlines_tbl)
 # 4.0 Joining Data ----
 bike_orderlines_joined_tbl <- orderlines_tbl %>%
   left_join(bikes_tbl, by = c("product.id" = "bike.id")) %>%
   left_join(bikeshops_tbl, by = c("customer.id" = "bikeshop.id"))
 bike_orderlines_joined_tbl %>% glimpse()
-bike_orderlines_joined_tbl
 # 5.0 Wrangling Data ----
-bike_orderlines_joined_tbl$category
-bike_orderlines_joined_tbl %>% 
-  select(category) %>%
-  filter(str_detect(category, "^Mountain")) %>% 
-  unique()
-
-# All actions are chained with the pipe already. You can perform each step separately and use glimpse() or View() to validate your code. Store the result in a variable at the end of the steps.
-bike_orderlines_joined_tbl
-bike_orderlines_wrangled_tbl <- bike_orderlines_joined_tbl
-bike_orderlines_wrangled_tbl <- bike_orderlines_wrangled_tbl %>%
-  separate(col    = category,
-           into   = c("category.1", "category.2", "category.3"),
-           sep    = " - ") %>%
-  
+bike_orderlines_wrangled_tbl <- bike_orderlines_joined_tbl %>%
+  separate(col    = location,
+           into   = c("city", "state"),
+           sep    = ",") %>%
   mutate(total.price = price * quantity) %>%
   select(-...1, -gender) %>%
   select(-ends_with(".id")) %>%
@@ -45,166 +46,95 @@ bike_orderlines_wrangled_tbl <- bike_orderlines_wrangled_tbl %>%
   rename(bikeshop = name) %>%
   set_names(names(.) %>% str_replace_all("\\.", "_"))
 # 6.0 Business Insights ----
-# 6.1 Sales by Year ----
 
+# 6.1 Sales by location ----
+library(lubridate)
 # Step 1 - Manipulate
-library("lubridate")
-
-sales_by_year_tbl <- bike_orderlines_wrangled_tbl
-sales_by_year_tbl <- sales_by_year_tbl %>%
- select(order_id, order_date, quantity, price, total_price) %>%
- mutate(order_year = year(order_date)) %>%
- group_by(order_year) %>%
- summarize(sales = sum(total_price))
-
-
-# Step 2 - Visualize
-
-
-# 6.2 Sales by Year and Category 2 ----
-sales_by_year_tbl %>%
+sales_by_location_tbl <- bike_orderlines_wrangled_tbl %>%
   
-  # Setup canvas with the columns year (x-axis) and sales (y-axis)
-  ggplot(aes(x = order_year, y = sales)) +
+  # Select columns
+  select(order_date, state, total_price) %>%
   
-  # Geometries
-  geom_col(fill = "#2DC6D6") + # Use geom_col for a bar plot
-  geom_label(aes(label = sales)) + # Adding labels to the bars
-  geom_smooth(method = "lm", se = FALSE) + # Adding a trendline
+  # Add year column
+  mutate(year = year(order_date)) %>%
   
-  # Formatting
-  # scale_y_continuous(labels = scales::dollar) + # Change the y-axis. 
-  # Again, we have to adjust it for euro values
-  scale_y_continuous(labels = scales::dollar_format(big.mark = ".", 
-                                                    decimal.mark = ",", 
-                                                    prefix = "", 
-                                                    suffix = " €")) +
-  labs(
-    title    = "Revenue by year",
-    subtitle = "Upward Trend",
-    x = "", # Override defaults for x and y
-    y = "Revenue"
-  )
-# Step 1 - Manipulate
-library("lubridate")
-
-sales_by_year_category_tbl <- bike_orderlines_wrangled_tbl
-sales_by_year_category_tbl <- sales_by_year_category_tbl %>%
-  select(order_id, order_date, quantity, price, category_1, total_price) %>%
-  mutate(order_year = year(order_date)) %>%
-  group_by(order_year, category_1) %>%
-  summarise(sales = sum(total_price)) %>%
-  ungroup() %>%
+  # Grouping by year and summarizing sales
+  group_by(state) %>% 
+  summarize(sales = sum(total_price)) %>%
+  
+  # column that turns the numbers into a currency format 
   mutate(sales_text = scales::dollar(sales, big.mark = ".", 
                                      decimal.mark = ",", 
                                      prefix = "", 
                                      suffix = " €"))
 
-sales_by_year_category_tbl
-  
+sales_by_location_tbl
 
-# Step 2 - Visualize
-sales_by_year_category_tbl %>%
+```
+```{r plot, fig.width=10, fig.height=7}
+sales_by_location_tbl %>%
   
   # Setup canvas with the columns year (x-axis) and sales (y-axis)
-  ggplot(aes(x = order_year, y = sales, fill = category_1)) +
+  ggplot(aes(x = state, y = sales)) +
   
   # Geometries
-  geom_col() +
-  #geom_col(fill = "#2DC6D6") + # Use geom_col for a bar plot
-  #geom_label(aes(label = sales_text)) + # Adding labels to the bars
+  geom_col(fill = "#2DC6D6") + # Use geom_col for a bar plot
+  geom_label(aes(label = sales_text)) + # Adding labels to the bars
   geom_smooth(method = "lm", se = FALSE) + # Adding a trendline
   
-  #facets
-  facet_wrap(~category_1)+
   # Formatting
-  # scale_y_continuous(labels = scales::dollar) + # Change the y-axis. 
-  # Again, we have to adjust it for euro values
   scale_y_continuous(labels = scales::dollar_format(big.mark = ".", 
                                                     decimal.mark = ",", 
                                                     prefix = "", 
                                                     suffix = " €")) +
   labs(
-    title    = "Revenue by year and main category",
-    subtitle = "Each product category has an upward trend",
-    fill = "Main category"
-    #x = "", # Override defaults for x and y
-    #y = "Revenue"
-  )
+    title    = "Revenue by location",
+    x = "state", # Override defaults for x and y
+    y = "Revenue"
+  )+ theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 
-# 7.0 Writing Files ----
+# 6.2 Sales by Year and location ----
 
-# 7.1 Excel ----
-install.packages("writexl")
-library("writexl")
-bike_orderlines_wrangled_tbl %>%
-  write_xlsx("ds_data/01_bike_sales/02_wrangled_data/bike_orderlines.xlsx")
+# Step 1 - Manipulate
+sales_by_year_location_tbl <- bike_orderlines_wrangled_tbl %>%
+  
+  # Select columns and add a year
+  select(order_date, total_price, state) %>%
+  mutate(year = year(order_date)) %>%
+  
+  # Group by and summarize year and main catgegory
+  group_by(year, state) %>%
+  summarise(sales = sum(total_price)) %>%
+  ungroup() %>%
+  
+  # Format $ Text
+  mutate(sales_text = scales::dollar(sales, big.mark = ".", 
+                                     decimal.mark = ",", 
+                                     prefix = "", 
+                                     suffix = " €"))
 
-# 7.2 CSV ----
-bike_orderlines_wrangled_tbl %>% 
-  write_csv("ds_data/01_bike_sales/02_wrangled_data/bike_orderlines.csv")
+sales_by_year_location_tbl  
+# Step 2 - Visualize
+sales_by_year_location_tbl %>%
+  
+  # Set up x, y, fill
+  ggplot(aes(x = year, y = sales, fill = state)) +
+  
+  # Geometries
+  geom_col() + # Run up to here to get a stacked bar plot
+  
+  # Facet
+  facet_wrap(~ state) +
+  
+  # Formatting
+  scale_y_continuous(labels = scales::dollar_format(big.mark = ".", 
+                                                    decimal.mark = ",", 
+                                                    prefix = "", 
+                                                    suffix = " €")) +
+  labs(
+    title = "Revenue by year and state",
+    fill = "state" # Changes the legend name
+  )+ theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-# 7.3 RDS ----
-bike_orderlines_wrangled_tbl %>% 
-  write_rds("ds_data/01_bike_sales/02_wrangled_data/bike_orderlines.rds")
-
-
-
-[![Caption](../../assets/img/elephant.png)](https://quarto.org)
-
-[![Caption](../../assets/img/elephant.png)](https://quarto.org "An elephant")
-
-
-# Lists
-
-* unordered list
-    + sub-item 1
-    + sub-item 2
-        - sub-sub-item 1
-        
-*   item 2
-
-    Continued (indent 4 spaces)
-    
-    
-1. ordered list
-2. item 2
-    i) sub-item 1
-         A.  sub-sub-item 1
-         
-(@)  A list whose numbering
-
-continues after
-
-(@)  an interruption
-
-# Tables
-
-| Right | Left | Default | Center |
-|------:|:-----|---------|:------:|
-|   12  |  12  |    12   |    12  |
-|  123  |  123 |   123   |   123  |
-|    1  |    1 |     1   |     1  |
-
-# Source Code
-
-Use ``` to delimit blocks of source code:
-
-```
-code
-```
-
-Add a language to syntax highlight code blocks:
-
-```{r}
-1 + 1
-```
-
-```{r}
-cars
-```
-
-```{r}
-plot(cars)
 ```

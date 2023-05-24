@@ -6,7 +6,7 @@ library("tidyverse")
 library("readxl")
 
 # 2.0 Importing Files ----
-bikes_tbl      <- read_excel(path = "ds_data/01_bike_sales/01_raw_data/bikes.xlsx")
+bikes_tbl      <- read_excel("ds_data/01_bike_sales/01_raw_data/bikes.xlsx")
 orderlines_tbl <- read_excel("ds_data/01_bike_sales/01_raw_data/orderlines.xlsx")
 bikeshops_tbl  <- read_excel("ds_data/01_bike_sales/01_raw_data/bikeshops.xlsx")
 
